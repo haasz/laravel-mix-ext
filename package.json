@@ -1,0 +1,31 @@
+{
+  "name": "laravel-mix-ext",
+  "version": "0.8.0",
+  "description": "The Extension of Laravel Mix.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/haasz/laravel-mix-ext.git"
+  },
+  "keywords": [
+    "the extension of laravel mix",
+    "extension of laravel mix",
+    "laravel mix extension",
+    "extended laravel mix",
+    "laravel mix ext",
+    "laravel mix",
+    "extension",
+    "extended",
+    "template",
+    "tpl"
+  ],
+  "author": "Haász Sándor <haasz@haasz-sandor.hu>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/haasz/laravel-mix-ext/issues"
+  },
+  "homepage": "https://gitlab.com/haasz/laravel-mix-ext#README"
+}
