@@ -4,7 +4,7 @@
   "description": "The Extension of Laravel Mix.",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint ./src/"
   },
   "repository": {
     "type": "git",
@@ -27,5 +27,8 @@
   "bugs": {
     "url": "https://gitlab.com/haasz/laravel-mix-ext/issues"
   },
-  "homepage": "https://gitlab.com/haasz/laravel-mix-ext#README"
+  "homepage": "https://gitlab.com/haasz/laravel-mix-ext#README",
+  "devDependencies": {
+    "eslint": "^4.0.0"
+  }
 }
