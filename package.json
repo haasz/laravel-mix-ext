@@ -30,5 +30,8 @@
   "homepage": "https://gitlab.com/haasz/laravel-mix-ext#README",
   "devDependencies": {
     "eslint": "^4.0.0"
+  },
+  "dependencies": {
+    "laravel-mix": "^0.8.8"
   }
 }

@@ -2,6 +2,12 @@
 
 This is the extension of [Laravel Mix](https://github.com/JeffreyWay/laravel-mix).
 
+## Compatibility
+
+##### v0.8
+
+Laravel Mix >=0.8.8 &lt;0.9.0
+
 ## License
 
 ##### The MIT License ([MIT](https://opensource.org/licenses/MIT))
