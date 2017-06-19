@@ -4,9 +4,9 @@ This is the extension of [Laravel Mix](https://github.com/JeffreyWay/laravel-mix
 
 ## Compatibility
 
-##### v0.8
+##### v0.8.0
 
-Laravel Mix >=0.8.8 &lt;0.9.0
+0.8.8 &le; Laravel Mix version &lt; 0.9.0
 
 ## License
 
