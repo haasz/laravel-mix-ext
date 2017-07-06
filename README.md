@@ -2,6 +2,32 @@
 
 This is the extension of [Laravel Mix](https://github.com/JeffreyWay/laravel-mix).
 
+## Release notes
+
+##### v0.8.0
+
+Extends the Laravel Mix with the `.tpl()` template manager method, sets the `npm run watch` call and automates the versioning.
+
+The `mix.tpl(src, target)` method has two mandatory parameters.
+The `src` parameter is the source template file and the `target` parameter is the output file.
+The `.tpl()` method copies the `src` file to the `target` and replaces the `{{ mix('file-path') }}` code snippets to the path of the referenced files in the copy file.
+The replacement is based on the `manifest.json` file, so you can only refer to files that are included in the `manifest.json` file.
+
+Multiple template files can be processed as follows:
+
+```js
+mix
+	.tpl(src1, target1)
+	.tpl(src2, target2)
+;
+```
+
+When calling `npm run watch`, if the referenced files change, than the `target` file(s) are also updated.
+
+Automatically turns on the versioning (except `npm run hot` call).
+
+Its use is recommended if it is not a Laravel project.
+
 ## Compatibility
 
 ##### v0.8.0

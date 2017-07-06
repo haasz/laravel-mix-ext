@@ -13,8 +13,10 @@ let mix = require('laravel-mix-ext');
  */
 
 mix
-	.js(            'src/js/script.js'    , 'dist/js/'  )
-	.sass(          'src/scss/style.scss' , 'dist/css/' )
+	.setPublicPath(                         'dist'            )
+	.js(            'src/js/script.js'    , 'dist/js/'        )
+	.sass(          'src/scss/style.scss' , 'dist/css/'       )
+	.tpl(           'src/index.html'      , 'dist/index.html' )
 ;
 
 // Full API
@@ -25,6 +27,7 @@ mix
 // 	.sass(src, output)
 // 	.less(src, output)
 // 	.stylus(src, output)
+// 	.tpl(src, target)
 // 	.browserSync('my-site.dev')
 // 	.combine(files, destination)
 // 	.babel(files, destination) // Identical to mix.combine(), but also includes Babel compilation.
