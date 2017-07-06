@@ -123,11 +123,20 @@ module.exports = (function (mix) {
 	mix.then(function () {
 		processTemplates();
 		if (process.argv.includes('--watch')) {
+			// Watch manifest file
 			mix.config.File.find(
 				mix.config.manifest.path
 			).watch(
 				processTemplates
 			);
+			// Watch template files
+			for (let template in templates) {
+				mix.config.File.find(
+					template
+				).watch(
+					processTemplates
+				);
+			}
 		}
 	});
 

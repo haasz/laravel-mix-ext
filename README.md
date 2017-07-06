@@ -4,6 +4,11 @@ This is the extension of [Laravel Mix](https://github.com/JeffreyWay/laravel-mix
 
 ## Release notes
 
+##### v0.8.4
+
+Adds the watching of template files change to the setting of `npm run watch` call.
+In the case of `npm run watch` call, if the template file(s) change, than the output file(s) are also updated.
+
 ##### v0.8.2
 
 The processing of template files is rewritten.
@@ -34,7 +39,7 @@ Its use is recommended if it is not a Laravel project.
 
 ## Compatibility
 
-##### v0.8.0 – v0.8.2
+##### v0.8.0 – v0.8.4
 
 0.8.8 &le; Laravel Mix version &lt; 0.9.0
 
