@@ -4,6 +4,10 @@ This is the extension of [Laravel Mix](https://github.com/JeffreyWay/laravel-mix
 
 ## Release notes
 
+##### v0.8.2
+
+The processing of template files is rewritten.
+
 ##### v0.8.0
 
 Extends the Laravel Mix with the `.tpl()` template manager method, sets the `npm run watch` call and automates the versioning.
@@ -30,7 +34,7 @@ Its use is recommended if it is not a Laravel project.
 
 ## Compatibility
 
-##### v0.8.0
+##### v0.8.0 – v0.8.2
 
 0.8.8 &le; Laravel Mix version &lt; 0.9.0
 

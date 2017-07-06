@@ -19,39 +19,88 @@ module.exports = (function (mix) {
 		return this;
 	};
 
-	// Subpatterns
-	var prefix = '\\{\\{\\s*mix\\s*\\(\\s*';
-	var postfix = '\\s*\\)\\s*\\}\\}';
-	var quotes = ['"', "'"];
+	// Patterns
+	let prefix = '\\{\\{\\s*mix\\s*\\(\\s*';
+	let postfix = '\\s*\\)\\s*\\}\\}';
+	let quotes = ['"', "'"];
+	let quotesRegExpStr = '[' + quotes.join('') + ']';
+	let tplTagRegExpStr = getTplTagRegExpStr();
+	let tplTagPathRegExpStr = getTplTagPathRegExpStr();
+	let numberOfTplTagRegExpParts = 2 * quotes.length + 1;
 
-	// Get pattern RegExp
-	function getPatternRegExp(pattern) {
-		pattern = escapeStringRegExp(pattern);
-		return new RegExp(
-			(
-				'('
-				+ prefix + quotes[0] + pattern + quotes[0] + postfix
-				+ '|'
-				+ prefix + quotes[1] + pattern + quotes[1] + postfix
-				+ ')'
-			),
-			'g'
+	// Get part of template tag RegExp string
+	function getTplTagRegExpStrPart(quote) {
+		return (
+			prefix + quote
+			+ '(([^\\\\' + quote + ']|\\\\.)*)'
+			+ quote + postfix
 		);
+	}
+
+	// Get template tag RegExp string
+	function getTplTagRegExpStr() {
+		return '(' + quotes.map(getTplTagRegExpStrPart).join('|') + ')';
+	}
+
+	// Get template tag path RegExp string
+	function getTplTagPathRegExpStr() {
+		return (
+			'^'
+			+ prefix + quotesRegExpStr
+			+ '(.*)'
+			+ quotesRegExpStr + postfix
+			+ '$'
+		);
+	}
+
+	// Get directory of template file from public path
+	function getTplDirFromPublic(file) {
+		return path.dirname(
+			file.path().replace(
+				new RegExp('^' + escapeStringRegExp(path.resolve(mix.config.publicPath))),
+				''
+			)
+		);
+	}
+
+	// Replace a template tag in file
+	function replaceTplTag(tplDirFromPublic, tplTag, replacement) {
+		let tplTagPath = tplTag.replace(new RegExp(tplTagPathRegExpStr), '$1');
+		let tplTagFromPublic = path.resolve(tplDirFromPublic, tplTagPath);
+		if (tplTagFromPublic in replacement && replacement.hasOwnProperty(tplTagFromPublic)) {
+			return (
+				path.isAbsolute(tplTagPath)
+					? replacement[tplTagFromPublic]
+					: path.relative(tplDirFromPublic, replacement[tplTagFromPublic])
+			);
+		}
+		return tplTag;
+	}
+
+	// Get replaced template content
+	function getReplacedTplContent(file, contentFragments, tplTags, replacement) {
+		let content = '';
+		let tplDirFromPublic = getTplDirFromPublic(file);
+		let contentFragmentStep = numberOfTplTagRegExpParts + 1;
+		let i = 0;
+		for (; i < tplTags.length; ++i) {
+			content += contentFragments[i * contentFragmentStep];
+			content += replaceTplTag(tplDirFromPublic, tplTags[i], replacement);
+		}
+		content += contentFragments[i * contentFragmentStep];
+		return content;
 	}
 
 	// Replace in file
 	function replaceInFile(file, replacement) {
 		file = mix.config.File.find(path.resolve(file));
-		var content = file.read();
-		for (let p in replacement) {
-			if (replacement.hasOwnProperty(p)) {
-				content = content.replace(
-					getPatternRegExp(p),
-					replacement[p]
-				);
-			}
+		let content = file.read();
+		let tplTags = content.match(new RegExp(tplTagRegExpStr, 'g'));
+		if (tplTags && tplTags.length) {
+			let contentFragments = content.split(new RegExp(tplTagRegExpStr));
+			content = getReplacedTplContent(file, contentFragments, tplTags, replacement);
+			file.write(content);
 		}
-		file.write(content);
 	}
 
 	// Process templates
