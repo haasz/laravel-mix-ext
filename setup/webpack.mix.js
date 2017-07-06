@@ -17,6 +17,7 @@ mix
 	.js(            'src/js/script.js'    , 'dist/js/'        )
 	.sass(          'src/scss/style.scss' , 'dist/css/'       )
 	.tpl(           'src/index.html'      , 'dist/index.html' )
+	.browserSync()
 ;
 
 // Full API

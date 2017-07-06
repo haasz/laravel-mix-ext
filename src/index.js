@@ -119,6 +119,28 @@ module.exports = (function (mix) {
 		mix.version();
 	}
 
+	// Set BrowserSync
+	let browserSync = mix.browserSync;
+	mix.browserSync = function (config) {
+		browserSync.call(
+			this,
+			Object.assign(
+				// Watch files
+				{ files: [mix.config.publicPath + '/**/*'] },
+				// Service
+				process.argv.includes('--hot')
+					? { proxy: typeof config === 'string' ? config : 'localhost:8080' }
+					: {
+						proxy: undefined,
+						server: { baseDir: [mix.config.publicPath] }
+					}
+				,
+				// Custom options
+				config && typeof config === 'object' ? config : {}
+			)
+		);
+	};
+
 	// Set templates processing
 	mix.then(function () {
 		processTemplates();
