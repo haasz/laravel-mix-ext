@@ -4,6 +4,11 @@ This is the extension of [Laravel Mix](https://github.com/JeffreyWay/laravel-mix
 
 ## Release notes
 
+##### v0.8.6
+
+Adds the watching of template files change to the setting of `npm run hot` call too.
+In the case of `npm run hot` call, the versioning is not turned on.
+
 ##### v0.8.4
 
 Adds the watching of template files change to the setting of `npm run watch` call.
@@ -39,7 +44,7 @@ Its use is recommended if it is not a Laravel project.
 
 ## Compatibility
 
-##### v0.8.0 – v0.8.4
+##### v0.8.0 – v0.8.6
 
 0.8.8 &le; Laravel Mix version &lt; 0.9.0
 

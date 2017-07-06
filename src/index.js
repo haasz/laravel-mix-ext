@@ -122,21 +122,29 @@ module.exports = (function (mix) {
 	// Set templates processing
 	mix.then(function () {
 		processTemplates();
-		if (process.argv.includes('--watch')) {
-			// Watch manifest file
-			mix.config.File.find(
-				mix.config.manifest.path
-			).watch(
-				processTemplates
-			);
-			// Watch template files
-			for (let template in templates) {
+		switch (true) {
+			// Watch
+			case process.argv.includes('--watch'):
+				// Watch manifest file
 				mix.config.File.find(
-					template
+					mix.config.manifest.path
 				).watch(
 					processTemplates
 				);
-			}
+			// Watch or Hot (no break, falls through)
+			case process.argv.includes('--hot'):
+				// Watch template files
+				for (let template in templates) {
+					mix.config.File.find(
+						template
+					).watch(
+						processTemplates
+					);
+				}
+				break;
+			// Default
+			default:
+				break;
 		}
 	});
 
