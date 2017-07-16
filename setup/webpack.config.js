@@ -260,6 +260,7 @@ module.exports.devtool = Mix.sourcemaps;
  |
  */
 module.exports.devServer = {
+    contentBase: (Mix.publicPath + '/').replace(/\/{2,}/g, '/'),
     historyApiFallback: true,
     noInfo: true,
     compress: true,
