@@ -4,6 +4,12 @@ This is the extension of [Laravel Mix](https://github.com/JeffreyWay/laravel-mix
 
 ## Release notes
 
+##### v0.8.9
+
+Adds the auto setting of contentBase and the auto opening in browser to the configuration options of webpack dev server in the example webpack.config.js file.
+
+Adds the scripts-to-package.json file to the setup examples.
+
 ##### v0.8.8
 
 Sets the default configuration to `mix.browserSync()` method according to the specified public path.
@@ -48,7 +54,7 @@ Its use is recommended if it is not a Laravel project.
 
 ## Compatibility
 
-##### v0.8.0 – v0.8.8
+##### v0.8.0 – v0.8.9
 
 0.8.8 &le; Laravel Mix version &lt; 0.9.0
 
