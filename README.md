@@ -2,6 +2,12 @@
 
 This is the extension of [Laravel Mix](https://github.com/JeffreyWay/laravel-mix).
 
+## Compatibility
+
+##### v0.8.0 – v0.8.9
+
+0.8.8 &le; Laravel Mix version &lt; 0.9.0
+
 ## Release notes
 
 ##### v0.8.9
@@ -51,12 +57,6 @@ When calling `npm run watch`, if the referenced files change, than the `target` 
 Automatically turns on the versioning (except `npm run hot` call).
 
 Its use is recommended if it is not a Laravel project.
-
-## Compatibility
-
-##### v0.8.0 – v0.8.9
-
-0.8.8 &le; Laravel Mix version &lt; 0.9.0
 
 ## License
 
