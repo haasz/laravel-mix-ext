@@ -14,10 +14,22 @@ let fs = require('fs-extra');
 	let targetDirectory = __dirname + '/../../../';
 
 
+	// Force argument
+	let force = process.argv.includes('-f');
+
+
 	// Copy webpack.mix.js and webpack.config.js into project root folder
 
-	fs.copySync( sourceDirectory + 'webpack.mix.js'    , targetDirectory + 'webpack.mix.js'    );
-	fs.copySync( sourceDirectory + 'webpack.config.js' , targetDirectory + 'webpack.config.js' );
+	fs.copySync(
+		sourceDirectory + 'webpack.mix.js',
+		targetDirectory + 'webpack.mix.js',
+		{overwrite: force}
+	);
+	fs.copySync(
+		sourceDirectory + 'webpack.config.js',
+		targetDirectory + 'webpack.config.js',
+		{overwrite: force}
+	);
 
 
 	// Set commands (scripts) in package.json
@@ -33,8 +45,8 @@ let fs = require('fs-extra');
 		scriptsJsonFile
 	);
 
-	// With overwrite (force argument)
-	if (process.argv.includes('-f')) {
+	// With overwrite
+	if (force) {
 		packageJson.scripts = Object.assign(
 			packageJson.scripts || {},
 			scriptsJson.scripts
