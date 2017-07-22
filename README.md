@@ -4,7 +4,7 @@ This is the extension of [Laravel Mix](https://github.com/JeffreyWay/laravel-mix
 
 ## Compatibility
 
-##### v0.8.0 – v0.8.9
+##### v0.8.0 – v0.8.10
 
 0.8.8 &le; Laravel Mix version &lt; 0.9.0
 
@@ -49,6 +49,10 @@ Then specify the project's custom settings in the `webpack.mix.js` file.
 Go for it! Development can begin…
 
 ## Release notes
+
+##### v0.8.10
+
+Adds the setup file (`setup/index.js`) and the description of installation.
 
 ##### v0.8.9
 
