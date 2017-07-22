@@ -8,6 +8,46 @@ This is the extension of [Laravel Mix](https://github.com/JeffreyWay/laravel-mix
 
 0.8.8 &le; Laravel Mix version &lt; 0.9.0
 
+## Installation
+
+Requirements:
+
+- Installed [Node.js](https://nodejs.org/)
+
+Create project directory and enter into:
+
+```bash
+mkdir my-web-application
+cd my-web-application
+```
+
+Create and set `package.json` file:
+
+```bash
+npm init
+```
+
+Install **The Extension of Laravel Mix**:
+
+```bash
+npm install laravel-mix-ext --save-dev
+```
+and set up:
+
+```bash
+node node_modules/laravel-mix-ext/setup
+```
+
+To surely overwrite any previous settings (for example reinstall), use the force argument (`-f`):
+
+```bash
+node node_modules/laravel-mix-ext/setup -f
+```
+
+Then specify the project's custom settings in the `webpack.mix.js` file.
+
+Go for it! Development can begin…
+
 ## Release notes
 
 ##### v0.8.9
