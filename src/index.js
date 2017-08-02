@@ -122,7 +122,7 @@ module.exports = (function (mix) {
 	// Set BrowserSync
 	let browserSync = mix.browserSync;
 	mix.browserSync = function (config) {
-		browserSync.call(
+		return browserSync.call(
 			this,
 			Object.assign(
 				// Watch files
