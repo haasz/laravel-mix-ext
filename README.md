@@ -1,6 +1,7 @@
 # The Extension of Laravel Mix
 
 This is the extension of [Laravel Mix](https://github.com/JeffreyWay/laravel-mix).
+Its use is recommended for those developments which are stand-alone (not Laravel) projects.
 
 ## Compatibility
 
@@ -100,7 +101,7 @@ When calling `npm run watch`, if the referenced files change, than the `target` 
 
 Automatically turns on the versioning (except `npm run hot` call).
 
-Its use is recommended if it is not a Laravel project.
+Its use is recommended for those developments which are stand-alone (not Laravel) projects.
 
 ## License
 
