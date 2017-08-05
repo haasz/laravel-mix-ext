@@ -1,6 +1,9 @@
-# The Extension of Laravel Mix
+# [The Extension of Laravel Mix](https://gitlab.com/haasz/laravel-mix-ext)
 
-This is the extension of [Laravel Mix](https://github.com/JeffreyWay/laravel-mix).
+The [Laravel Mix](https://github.com/JeffreyWay/laravel-mix) provides a clean, fluent API for defining basic webpack build steps for your web application.
+The Laravel Mix supports several common CSS and JavaScript preprocessors.
+
+**The Extensions of Laravel Mix** adds and modifies methods and presets to Laravel Mix.
 Its use is recommended for those developments which are stand-alone (not Laravel) projects.
 
 ## Compatibility
