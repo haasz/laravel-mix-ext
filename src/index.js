@@ -142,7 +142,7 @@ mix.tpl = function (src, target) {
 
 
 /**
- * Auxiliary variables and RegExp strings to the proccessing of template tags.
+ * Auxiliary variables and RegExp strings for the processing of template tags.
  * A template tag is {{ mix('path/of/file') }} or {{ mix("path/of/file") }}.
  *
  */
