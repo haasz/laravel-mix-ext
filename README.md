@@ -8,7 +8,7 @@ Its use is recommended for those developments which are stand-alone (not Laravel
 
 ## Compatibility
 
-##### v0.8.0 – v0.8.10
+##### v0.8.0 – v0.8.11
 
 0.8.8 &le; Laravel Mix version &lt; 0.9.0
 
@@ -53,6 +53,12 @@ Then specify the project's custom settings in the `webpack.mix.js` file.
 Go for it! Development can begin…
 
 ## Release notes
+
+##### v0.8.11
+
+Fixes the modified `mix.browserSync()` method: restores chaining.
+
+The code is refactored and dokumented.
 
 ##### v0.8.10
 
