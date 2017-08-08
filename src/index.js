@@ -112,6 +112,115 @@ mix.browserSync = function (config) {
 
 
 
+//--------------------------------
+// The mix.out() method
+//--------------------------------
+
+
+/**
+ * The default settings of the output directories (images and fonts).
+ *
+ * @default
+ *
+ * @type {Object}
+ */
+mix.config.out = {
+	images: {
+		directory: 'images',
+		extensions: ['png', 'jpe?g', 'gif']
+	},
+	fonts: {
+		directory: 'fonts',
+		extensions: ['woff2?', 'ttf', 'eot', 'svg', 'otf']
+	}
+};
+
+
+/**
+ * Set the output directories (modify the default settings).
+ *
+ * @this mix
+ *
+ * @param  {Object} options The custom settings.
+ *
+ * @return {Object}         The "this" (to chaining), that is the mix object.
+ */
+mix.out = function (options) {
+	if (
+		options
+		&&
+		(typeof options === 'object' || typeof options === 'function')
+	) {
+		for (let key in mix.config.out) {
+			if (mix.config.out.hasOwnProperty(key)) {
+				setOutProperty(key, options);
+			}
+		}
+	}
+	return this;
+};
+
+
+/**
+ * Set a property (which corresponds to an output directory) of mix.config.out object.
+ *
+ * @param {string} key     The name of property.
+ * @param {Object} options The custom settings.
+ */
+function setOutProperty(key, options) {
+	if (options[key]) {
+		// Directory
+		let directory = (
+			typeof options[key] === 'string' && options[key]
+			||
+			!Array.isArray(options[key]) && options[key].directory
+		);
+		if (directory) {
+			mix.config.out[key].directory = '' + directory;
+		}
+		// Extensions
+		let extensions = (
+			Array.isArray(options[key]) && options[key]
+			||
+			Array.isArray(options[key].extensions) && options[key].extensions
+		);
+		if (extensions) {
+			for (let k in mix.config.out) {
+				if (mix.config.out.hasOwnProperty(k)) {
+					mix.config.out[k].extensions = arraySubtraction(
+						mix.config.out[k].extensions,
+						extensions
+					);
+				}
+			}
+			mix.config.out[key].extensions =
+				mix.config.out[key].extensions.concat(extensions)
+			;
+		}
+	}
+}
+
+
+/**
+ * Array subtraction.
+ *
+ * @param  {Array} arrA The minuend array.
+ * @param  {Array} arrB The subtrahend array.
+ *
+ * @return {Array}      The difference array.
+ */
+function arraySubtraction(arrA, arrB) {
+	arrA = arrA.slice();
+	for (let i = 0; i < arrB.length; ++i) {
+		arrA = arrA.filter(function (value) {
+			return value !== arrB[i];
+		});
+	}
+	return arrA;
+}
+
+
+
 //----------------------------------------------------------------
 // The mix.tpl() method
 //----------------------------------------------------------------

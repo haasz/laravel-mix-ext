@@ -138,30 +138,30 @@ module.exports.module = {
         },
 
         {
-            test: /\.(png|jpe?g|gif)$/,
+            test: new RegExp('\\.(' + Mix.out.images.extensions.join('|') + ')$'),
             loader: 'file-loader',
             options: {
                 name: path => {
                     if (!/node_modules|bower_components/.test(path)) {
-                        return 'images/[name].[ext]?[hash]';
+                        return Mix.out.images.directory + '/[name].[ext]?[hash]';
                     }
 
-                    return 'images/vendor/' + path.replace(/\\/g, '/').replace(/((.*(node_modules|bower_components))|images|image|img|assets)\//g, '') + '?[hash]';
+                    return Mix.out.images.directory + '/vendor/' + path.replace(/\\/g, '/').replace(/((.*(node_modules|bower_components))|images|image|img|assets)\//g, '') + '?[hash]';
                 },
                 publicPath: Mix.resourceRoot
             }
         },
 
         {
-            test: /\.(woff2?|ttf|eot|svg|otf)$/,
+            test: new RegExp('\\.(' + Mix.out.fonts.extensions.join('|') + ')$'),
             loader: 'file-loader',
             options: {
                 name: path => {
                     if (!/node_modules|bower_components/.test(path)) {
-                        return 'fonts/[name].[ext]?[hash]';
+                        return Mix.out.fonts.directory + '/[name].[ext]?[hash]';
                     }
 
-                    return 'fonts/vendor/' + path.replace(/\\/g, '/').replace(/((.*(node_modules|bower_components))|fonts|font|assets)\//g, '') + '?[hash]';
+                    return Mix.out.fonts.directory + '/vendor/' + path.replace(/\\/g, '/').replace(/((.*(node_modules|bower_components))|fonts|font|assets)\//g, '') + '?[hash]';
                 },
                 publicPath: Mix.resourceRoot
             }

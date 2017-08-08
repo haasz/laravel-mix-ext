@@ -37,7 +37,16 @@ mix
 	.js           ( 'src/js/script.js'    , 'dist/js/'        )
 	.sass         ( 'src/scss/style.scss' , 'dist/css/'       )
 	.tpl          ( 'src/index.html'      , 'dist/index.html' )
-	.browserSync  () // Call it only after calling mix.setPublicPath()!
+	.out(
+		{
+			images : {
+				directory  : 'img',
+				extensions : [ 'svg' ] // This is only the difference from default.
+			},
+			fonts  : 'font'
+		}
+	)
+	.browserSync() // Call it only after calling mix.setPublicPath()!
 ;
 
 
@@ -65,6 +74,26 @@ mix
 	.stylus(src, output)
 
 	.tpl(src, target) // Added by The Extension of Laravel Mix.
+
+	.out({ // Set the output directories (images and fonts). Added by The Extension of Laravel Mix.
+
+		images: { // Object (like this) or String ('img') or Array (['svg'])
+
+			directory: 'img', // Default: 'images'
+
+			extensions: ['svg'] // Default: ['png', 'jpe?g', 'gif']. Giving the difference is enough.
+
+		},
+
+		fonts: { // Object or String or Array
+
+			directory: 'font', // Default: 'fonts'
+
+			extensions: [] // Default: ['woff2?', 'ttf', 'eot', 'svg', 'otf']. Giving the difference is enough.
+
+		}
+
+	})
 
 	.browserSync('my-site.dev') // Call it only after calling mix.setPublicPath()! Modified by The Extension of Laravel Mix.
 
