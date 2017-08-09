@@ -1,6 +1,6 @@
 {
   "name": "laravel-mix-ext",
-  "version": "0.8.11",
+  "version": "0.8.12",
   "description": "The Extension of Laravel Mix.",
   "main": "src/index.js",
   "scripts": {
