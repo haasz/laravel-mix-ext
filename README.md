@@ -8,7 +8,7 @@ Its use is recommended for those developments which are stand-alone (not Laravel
 
 ## Compatibility
 
-##### v0.8.0 – v0.8.11
+##### v0.8.0 – v0.8.12
 
 0.8.8 &le; Laravel Mix version &lt; 0.9.0
 
@@ -54,11 +54,57 @@ Go for it! Development can begin…
 
 ## Release notes
 
+##### v0.8.12
+
+Extends the Laravel Mix with `.out()` method for the setting of output directories (images and fonts).
+
+Giving the difference from the default is enough.
+For example:
+
+```js
+mix
+	.out({
+		images: {
+			directory: 'img',
+			extensions: ['svg']
+		},
+		fonts: 'font'
+	})
+;
+```
+
+or:
+
+```js
+mix
+	.out({
+		images: ['svg']
+	})
+;
+```
+
+The default settings:
+
+```js
+{
+	images: {
+		directory: 'images',
+		extensions: ['png', 'jpe?g', 'gif']
+	},
+	fonts: {
+		directory: 'fonts',
+		extensions: ['woff2?', 'ttf', 'eot', 'svg', 'otf']
+	}
+}
+```
+
+The setup code is refactored and documented.
+
 ##### v0.8.11
 
 Fixes the modified `mix.browserSync()` method: restores chaining.
 
-The code is refactored and dokumented.
+The code is refactored and documented.
 
 ##### v0.8.10
 
