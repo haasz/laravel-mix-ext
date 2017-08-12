@@ -6,6 +6,18 @@ The Laravel Mix supports several common CSS and JavaScript preprocessors.
 **The Extensions of Laravel Mix** adds and modifies methods and presets to Laravel Mix.
 Its use is recommended for those developments which are stand-alone (not Laravel) projects.
 
+## Table of contents
+
+- [Compatibility](#compatibility)
+
+- [Installation](#installation)
+
+- [Release notes](#release-notes)
+
+- [License](#license)
+
+<!-- toc -->
+
 ## Compatibility
 
 ##### v0.8.0 – v0.8.12
