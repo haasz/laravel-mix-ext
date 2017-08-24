@@ -33,11 +33,11 @@ let fs = require('fs-extra');
 let
 
 	/**
-	 * The source directory (the module's "setup" directory).
+	 * The source directory (the module's "setup/source" directory).
 	 *
 	 * @type {string}
 	 */
-	sourceDirectory = __dirname + '/',
+	sourceDirectory = __dirname + '/source/',
 
 
 	/**
@@ -60,19 +60,13 @@ let force = process.argv.includes('-f');
 
 
 /**
- * Copy webpack.mix.js and webpack.config.js files into the project's root directory.
+ * Copy the webpack.mix.js and the webpack.config.js files into the project's root directory.
  *
  */
 
 fs.copySync(
-	sourceDirectory + 'webpack.mix.js',
-	targetDirectory + 'webpack.mix.js',
-	{overwrite: force}
-);
-
-fs.copySync(
-	sourceDirectory + 'webpack.config.js',
-	targetDirectory + 'webpack.config.js',
+	sourceDirectory,
+	targetDirectory,
 	{overwrite: force}
 );
 
@@ -102,7 +96,7 @@ let
 	 *
 	 * @type {string}
 	 */
-	scriptsJsonFile = sourceDirectory + 'scripts-to-package.json',
+	scriptsJsonFile = __dirname + '/scripts-to-package.json',
 
 
 	/**
