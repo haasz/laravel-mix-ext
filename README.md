@@ -28,7 +28,7 @@ Its use is recommended for those developments which are stand-alone (not Laravel
 
 ## Compatibility
 
-##### v0.8.0 – v0.8.12
+##### v0.8.0 – v0.8.13
 
 0.8.8 &le; Laravel Mix version &lt; 0.9.0
 
@@ -95,6 +95,10 @@ npm run watch
 Go for it! Start the development…
 
 ## Release notes
+
+##### v0.8.13
+
+Adds an example application (*Hello, World!*) and the description of its installation.
 
 ##### v0.8.12
 
