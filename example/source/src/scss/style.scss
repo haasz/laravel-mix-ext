@@ -43,10 +43,10 @@ body {
 
 			animation: $time linear infinite colors;
 
-			@for $j from 0 through ($length - 1) {
+			@for $j from 1 through $length {
 
 				&:nth-child(#{$length}n+#{$j}) {
-					animation-delay: ($j / $length * $time);
+					animation-delay: (($j - 1) / $length * $time);
 				}
 
 			}
