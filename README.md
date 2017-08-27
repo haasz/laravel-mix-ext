@@ -62,7 +62,29 @@ node node_modules/laravel-mix-ext/setup -f
 
 Then specify the project's custom settings in the `webpack.mix.js` file.
 
-Go for it! Development can begin…
+An example application (*Hello, World!*) can also be installed with original settings:
+
+```bash
+node node_modules/laravel-mix-ext/example
+```
+
+The force argument (`-f`) can be used in this case too:
+
+```bash
+node node_modules/laravel-mix-ext/example -f
+```
+
+Run the project in `dev`, `watch`, `hot` or `production` mode:
+
+```bash
+npm run watch
+```
+
+<p align="center">
+	<img src="./img/hello-world.png" alt="Hello, World!">
+</p>
+
+Go for it! Start the development…
 
 ## Release notes
 
