@@ -28,6 +28,10 @@ Its use is recommended for those developments which are stand-alone (not Laravel
 
 ## Compatibility
 
+##### v1.4.0
+
+1.4.2 &le; Laravel Mix version
+
 ##### v0.8.0 – v0.8.13
 
 0.8.8 &le; Laravel Mix version &lt; 0.9.0
@@ -95,6 +99,10 @@ npm run watch
 Go for it! Start the development…
 
 ## Release notes
+
+##### v1.4.0
+
+The code is rewrited to use the current version of Laravel Mix.
 
 ##### v0.8.13
 
