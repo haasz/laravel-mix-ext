@@ -30,6 +30,14 @@ let path = require('path');
 
 
 /**
+ * Chokidar
+ *
+ * @type {Object}
+ */
+let chokidar = require('chokidar');
+
+
+/**
  * Escape string to RegExp
  *
  * @type {Function}
@@ -73,11 +81,11 @@ if (!process.argv.includes('--hot')) {
 
 
 /**
- * The original browserSync function.
+ * The original browserSync method.
  *
  * @type {Function}
  */
-let browserSync = mix.browserSync;
+let originalBrowserSync = mix.__proto__.browserSync;
 
 
 /**
@@ -90,18 +98,18 @@ let browserSync = mix.browserSync;
  *
  * @return {Object}               The "this" (to chaining), that is the mix object.
  */
-mix.browserSync = function (config) {
-	return browserSync.call(
+mix.__proto__.browserSync = function browserSync(config) {
+	return originalBrowserSync.call(
 		this,
 		Object.assign(
 			// Watch files
-			{ files: [mix.config.publicPath + '/**/*'] },
+			{ files: [Config.publicPath + '/**/*'] },
 			// Service
 			process.argv.includes('--hot')
 				? { proxy: typeof config === 'string' ? config : 'localhost:8080' }
 				: {
 					proxy: undefined,
-					server: { baseDir: [mix.config.publicPath] }
+					server: { baseDir: [Config.publicPath] }
 				}
 			,
 			// Custom options
@@ -124,7 +132,7 @@ mix.browserSync = function (config) {
  *
  * @type {Object}
  */
-mix.config.out = {
+Config.out = {
 	images: {
 		directory: 'images',
 		extensions: ['png', 'jpe?g', 'gif']
@@ -145,24 +153,33 @@ mix.config.out = {
  *
  * @return {Object}         The "this" (to chaining), that is the mix object.
  */
-mix.out = function (options) {
-	if (
-		options
-		&&
-		(typeof options === 'object' || typeof options === 'function')
-	) {
-		for (let key in mix.config.out) {
-			if (mix.config.out.hasOwnProperty(key)) {
-				setOutProperty(key, options);
+Object.defineProperty(
+	mix.__proto__,
+	'out',
+	{
+		value: function out(options) {
+			if (
+				options
+				&&
+				(typeof options === 'object' || typeof options === 'function')
+			) {
+				for (let key in Config.out) {
+					if (Config.out.hasOwnProperty(key)) {
+						setOutProperty(key, options);
+					}
+				}
 			}
-		}
+			return this;
+		},
+		writable: true,
+		enumerable: false,
+		configurable: true
 	}
-	return this;
-};
+);
 
 
 /**
- * Set a property (which corresponds to an output directory) of mix.config.out object.
+ * Set a property (which corresponds to an output directory) of Config.out object.
  *
  * @param {string} key     The name of property.
  * @param {Object} options The custom settings.
@@ -176,7 +193,7 @@ function setOutProperty(key, options) {
 			!Array.isArray(options[key]) && options[key].directory
 		);
 		if (directory) {
-			mix.config.out[key].directory = '' + directory;
+			Config.out[key].directory = '' + directory;
 		}
 		// Extensions
 		let extensions = (
@@ -185,16 +202,16 @@ function setOutProperty(key, options) {
 			Array.isArray(options[key].extensions) && options[key].extensions
 		);
 		if (extensions) {
-			for (let k in mix.config.out) {
-				if (mix.config.out.hasOwnProperty(k)) {
-					mix.config.out[k].extensions = arraySubtraction(
-						mix.config.out[k].extensions,
+			for (let k in Config.out) {
+				if (Config.out.hasOwnProperty(k)) {
+					Config.out[k].extensions = arraySubtraction(
+						Config.out[k].extensions,
 						extensions
 					);
 				}
 			}
-			mix.config.out[key].extensions =
-				mix.config.out[key].extensions.concat(extensions)
+			Config.out[key].extensions =
+				Config.out[key].extensions.concat(extensions)
 			;
 		}
 	}
@@ -227,11 +244,11 @@ function arraySubtraction(arrA, arrB) {
 
 
 /**
- * Templates
+ * The templates.
  *
  * @type {Object}
  */
-var templates = {};
+Config.tpl = {};
 
 
 /**
@@ -244,10 +261,19 @@ var templates = {};
  *
  * @return {Object}        The "this" (to chaining), that is the mix object.
  */
-mix.tpl = function (src, target) {
-	templates[src] = target;
-	return this;
-};
+Object.defineProperty(
+	mix.__proto__,
+	'tpl',
+	{
+		value: function tpl(src, target) {
+			Config.tpl[src] = target;
+			return this;
+		},
+		writable: true,
+		enumerable: false,
+		configurable: true
+	}
+);
 
 
 /**
@@ -367,7 +393,7 @@ function getDirFromPublicPath(file) {
 	return path.dirname(
 		file.path().replace(
 			new RegExp(
-				'^' + escapeStringRegExp(path.resolve(mix.config.publicPath))
+				'^' + escapeStringRegExp(path.resolve(Config.publicPath))
 			),
 			''
 		)
@@ -436,7 +462,7 @@ function getCompiledContent(file, fragments, tags, replacements) {
  * @param  {Object} replacements The replacements.
  */
 function compileTemplate(file, replacements) {
-	file = mix.config.File.find(path.resolve(file));
+	file = File.find(path.resolve(file));
 	let content = file.read();
 	let tags = content.match(new RegExp(tplTagRegExpStr, 'g'));
 	if (tags && tags.length) {
@@ -456,15 +482,42 @@ function compileTemplate(file, replacements) {
  *
  */
 function processTemplates() {
-	var replacements = mix.config.manifest.get();
-	for (let template in templates) {
-		if (templates.hasOwnProperty(template)) {
+	var replacements = Mix.manifest.get();
+	for (let template in Config.tpl) {
+		if (Config.tpl.hasOwnProperty(template)) {
 			// Copy to target
-			fs.copySync(template, templates[template]);
+			fs.copySync(template, Config.tpl[template]);
 			// Compile
-			compileTemplate(templates[template], replacements);
+			compileTemplate(Config.tpl[template], replacements);
 		}
 	}
+}
+
+
+/**
+ * Watch the file's changes.
+ *
+ * @param  {string}   file     The file.
+ * @param  {Function} callback The callback function.
+ */
+function watchFile(file, callback) {
+	file = File.find(file);
+	chokidar
+		.watch(
+			file.path(),
+			{
+				persistent: true
+			}
+		)
+		.on(
+			'change',
+			function () {
+				if (typeof callback === 'function') {
+					callback(file);
+				}
+			}
+		)
+	;
 }
 
 
@@ -478,18 +531,16 @@ mix.then(function () {
 		// Watch mode
 		case process.argv.includes('--watch'):
 			// Watch manifest file
-			mix.config.File.find(
-				mix.config.manifest.path
-			).watch(
+			watchFile(
+				Mix.manifest.path(),
 				processTemplates
 			);
 		// Watch or Hot mode (no break, falls through)
 		case process.argv.includes('--hot'):
 			// Watch template files
-			for (let template in templates) {
-				mix.config.File.find(
-					template
-				).watch(
+			for (let template in Config.tpl) {
+				watchFile(
+					template,
 					processTemplates
 				);
 			}

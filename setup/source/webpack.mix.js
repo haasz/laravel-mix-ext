@@ -69,9 +69,15 @@ mix
 
 	.sass(src, output)
 
+	.standaloneSass('src', output) // Faster, but isolated from Webpack.
+
+	.fastSass('src', output) // Alias for mix.standaloneSass().
+
 	.less(src, output)
 
 	.stylus(src, output)
+
+	.postCss(src, output, [require('postcss-some-plugin')()])
 
 	.tpl(src, target) // Added by The Extension of Laravel Mix.
 
@@ -103,12 +109,13 @@ mix
 
 	.copy(from, to)
 
+	.copyDirectory(fromDir, toDir)
+
 	.minify(file)
 
 	.sourceMaps() // Enable sourcemaps
 
-	// Auto versioning turned ON (except hot mode) by The Extension of Laravel Mix. Its use is unnecessary:
-	// .version() // Enable versioning.
+	.version() // Enable versioning. Auto versioning turned ON (except hot mode) by The Extension of Laravel Mix.
 
 	.disableNotifications()
 
@@ -118,7 +125,9 @@ mix
 
 	.autoload({}) // Will be passed to Webpack's ProvidePlugin.
 
-	.webpackConfig({}) // Override webpack.config.js, without editing the file directly.
+	// This is a Laravel Mix method, but the original webpack configuration is modified by The Extension of Laravel Mix,
+	// so its use is not recommended at this time:
+	// .webpackConfig({}) // Override webpack.config.js, without editing the file directly.
 
 	.then(function () {}) // Will be triggered each time Webpack finishes building.
 
@@ -127,6 +136,8 @@ mix
 		extractVueStyles: false, // Extract .vue component styling to file, rather than inline.
 
 		processCssUrls: true, // Process/optimize relative stylesheet url()'s. Set to false, if you don't want them touched.
+
+		purifyCss: false, // Remove unused CSS selectors.
 
 		uglify: {}, // Uglify-specific options. https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
 
