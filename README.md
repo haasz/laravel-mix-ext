@@ -28,9 +28,9 @@ Its use is recommended for those developments which are stand-alone (not Laravel
 
 ## Compatibility
 
-##### v1.4.0
+##### v1.4.0 – v1.4.1
 
-1.4.2 &le; Laravel Mix version
+1.4.2 &le; Laravel Mix version &lt; 2.0.0
 
 ##### v0.8.0 – v0.8.13
 
@@ -99,6 +99,11 @@ npm run watch
 Go for it! Start the development…
 
 ## Release notes
+
+##### v1.4.1
+
+Modifies the original `mix.setPublicPath()` method:
+If the public directory does not exist yet, it will create it.
 
 ##### v1.4.0
 
