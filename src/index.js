@@ -70,6 +70,43 @@ if (!process.argv.includes('--hot')) {
 
 
 //----------------------------------------------------------------
+// The mix.setPublicPath() method
+//----------------------------------------------------------------
+
+
+/**
+ * Modify the original mix.setPublicPath() method.
+ *
+ */
+
+
+/**
+ * The original setPublicPath method.
+ *
+ * @type {Function}
+ */
+let originalSetPublicPath = mix.__proto__.setPublicPath;
+
+
+/**
+ * Override the default path to your project's public directory.
+ * If the public directory does not exist yet, it will create it.
+ *
+ * @this mix
+ *
+ * @param  {string} path The public directory.
+ *
+ * @return {Object}      The "this" (to chaining), that is the mix object.
+ */
+mix.__proto__.setPublicPath = function setPublicPath(path) {
+	originalSetPublicPath.call(this, path);
+	fs.ensureDirSync(Config.publicPath);
+	return this;
+};
+
+
+
+//----------------------------------------------------------------
 // The mix.browserSync() method
 //----------------------------------------------------------------
 
