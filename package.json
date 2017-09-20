@@ -32,6 +32,8 @@
     "eslint": "^4.0.0"
   },
   "dependencies": {
+    "browser-sync": "^2.18.13",
+    "browser-sync-webpack-plugin": "^1.2.0",
     "laravel-mix": "^1.4.2"
   }
 }
