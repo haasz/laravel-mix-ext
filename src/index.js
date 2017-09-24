@@ -100,7 +100,9 @@ let originalSetPublicPath = mix.__proto__.setPublicPath;
  */
 mix.__proto__.setPublicPath = function setPublicPath(path) {
 	originalSetPublicPath.call(this, path);
-	fs.ensureDirSync(Config.publicPath);
+	if (Config.publicPath) {
+		fs.ensureDirSync(Config.publicPath);
+	}
 	return this;
 };
 
