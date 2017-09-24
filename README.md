@@ -28,7 +28,7 @@ Its use is recommended for those developments which are stand-alone (not Laravel
 
 ## Compatibility
 
-##### v1.4.0 – v1.4.1
+##### v1.4.0 – v1.4.2
 
 1.4.2 &le; Laravel Mix version &lt; 2.0.0
 
@@ -99,6 +99,12 @@ npm run watch
 Go for it! Start the development…
 
 ## Release notes
+
+##### v1.4.2
+
+Adds the `browser-sync` and the `browser-sync-webpack-plugin` packages to dependencies.
+
+Improves the `setPublicPath()` method.
 
 ##### v1.4.1
 
