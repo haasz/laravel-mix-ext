@@ -28,6 +28,15 @@ Its use is recommended for those developments which are stand-alone (not Laravel
 
 ## Compatibility
 
+#### With operating systems
+
+##### v0.8.0 – v1.4.2
+
+- Linux
+- macOS
+
+#### With Laravel Mix versions
+
 ##### v1.4.0 – v1.4.2
 
 1.4.2 &le; Laravel Mix version &lt; 2.0.0
