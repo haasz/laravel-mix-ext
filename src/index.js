@@ -429,12 +429,15 @@ function getTplTagPathRegExpStr() {
  * @return {string}      The directory of file from public path.
  */
 function getDirFromPublicPath(file) {
-	return path.dirname(
-		file.path().replace(
-			new RegExp(
-				'^' + escapeStringRegExp(path.resolve(Config.publicPath))
-			),
-			''
+	return path.posix.dirname(
+		path.posix.normalize(
+			path.posix.sep
+			+ file.path().replace(
+				new RegExp(
+					'^' + escapeStringRegExp(path.resolve(Config.publicPath))
+				),
+				''
+			).split(path.sep).join(path.posix.sep)
 		)
 	);
 }
@@ -451,16 +454,16 @@ function getDirFromPublicPath(file) {
  */
 function replaceTplTag(dirFromPublicPath, tag, replacements) {
 	let tagPath = tag.replace(new RegExp(tplTagPathRegExpStr), '$1');
-	let tagPathFromPublicPath = path.resolve(dirFromPublicPath, tagPath);
+	let tagPathFromPublicPath = path.posix.resolve(dirFromPublicPath, tagPath);
 	if (
 		tagPathFromPublicPath in replacements
 		&&
 		replacements.hasOwnProperty(tagPathFromPublicPath)
 	) {
 		return (
-			path.isAbsolute(tagPath)
+			path.posix.isAbsolute(tagPath)
 				? replacements[tagPathFromPublicPath]
-				: path.relative(
+				: path.posix.relative(
 					dirFromPublicPath,
 					replacements[tagPathFromPublicPath]
 				)
