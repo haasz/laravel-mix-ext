@@ -30,6 +30,12 @@ Its use is recommended for those developments which are stand-alone (not Laravel
 
 #### With operating systems
 
+##### v1.4.4
+
+- Linux
+- macOS
+- Windows
+
 ##### v0.8.0 – v1.4.2
 
 - Linux
@@ -37,7 +43,7 @@ Its use is recommended for those developments which are stand-alone (not Laravel
 
 #### With Laravel Mix versions
 
-##### v1.4.0 – v1.4.2
+##### v1.4.0 – v1.4.4
 
 1.4.2 &le; Laravel Mix version &lt; 2.0.0
 
@@ -108,6 +114,11 @@ npm run watch
 Go for it! Start the development…
 
 ## Release notes
+
+##### v1.4.4
+
+Adds Windows operating system support.
+Previous versions are only compatible with POSIX operating systems (Linux, macOS, etc.).
 
 ##### v1.4.2
 
