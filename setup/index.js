@@ -60,7 +60,7 @@ let force = process.argv.includes('-f');
 
 
 /**
- * Copy the webpack.mix.js and the webpack.config.js files into the project's root directory.
+ * Copy the webpack.mix.js file into the project's root directory.
  *
  */
 
