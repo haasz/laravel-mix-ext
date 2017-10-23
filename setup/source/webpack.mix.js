@@ -65,6 +65,8 @@ mix
 
 	.react(src, output) // Identical to mix.js(), but registers React Babel compilation.
 
+	.ts(src, output) // Requires tsconfig.json to exist in the same folder as webpack.mix.js
+
 	.extract(vendorLibs)
 
 	.sass(src, output)
