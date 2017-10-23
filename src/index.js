@@ -165,22 +165,58 @@ mix.__proto__.browserSync = function browserSync(config) {
 
 
 /**
- * The default settings of the output directories (images and fonts).
- *
- * @default
+ * The output configuration.
  *
  * @type {Object}
  */
-Config.out = {
-	images: {
-		directory: 'images',
-		extensions: ['png', 'jpe?g', 'gif']
-	},
-	fonts: {
-		directory: 'fonts',
-		extensions: ['woff2?', 'ttf', 'eot', 'svg', 'otf']
-	}
-};
+Config.out = {};
+
+
+/**
+ * Add the default settings of the output directories (images and fonts) to configuration.
+ * {
+ * 	images: {
+ * 		directory: 'images',
+ * 		extensions: ['png', 'jpe?g', 'gif']
+ * 	},
+ * 	fonts: {
+ * 		directory: 'fonts',
+ * 		extensions: ['woff2?', 'ttf', 'eot', 'svg', 'otf']
+ * 	}
+ * }
+ *
+ */
+addOutProperty(Config.out, 'images', ['png', 'jpe?g', 'gif']);
+addOutProperty(Config.out, 'fonts', ['woff2?', 'ttf', 'eot', 'svg', 'otf']);
+
+
+/**
+ * Add an output directory settings to the configuration.
+ *
+ * @param {Object}   out        The output configuration.
+ * @param {string}   directory  The directory setting key and default name.
+ * @param {string[]} extensions The file extensions.
+ */
+function addOutProperty(out, directory, extensions) {
+	out[directory] = {
+		extensions: extensions
+	};
+	Object.defineProperty(
+		out[directory],
+		'directory',
+		{
+			get: function () {
+				return Config.fileLoaderDirs[directory];
+			},
+			set: function (value) {
+				Config.fileLoaderDirs[directory] = value;
+			},
+			enumerable: true,
+			configurable: false
+		}
+	);
+	out[directory].directory = out[directory].directory || directory;
+}
 
 
 /**

@@ -68,13 +68,6 @@ function modifyOutRule(rule, type) {
 	rule.test = new RegExp(
 		'\\.(' + Config.out[type].extensions.join('|') + ')$'
 	);
-	let options = Array.isArray(rule.loaders) ? rule.loaders[0].options : rule.options;
-	options.name = eval(
-		('' + options.name).replace(
-			new RegExp('([\'"])' + type + '\\/', 'g'),
-			'Config.out.' + type + '.directory + $1/'
-		)
-	);
 }
 
 
