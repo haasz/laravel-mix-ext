@@ -30,7 +30,7 @@ Its use is recommended for those developments which are stand-alone (not Laravel
 
 #### With operating systems
 
-##### v1.4.4 – v1.4.5
+##### v1.4.4 – v1.5.0
 
 - Linux
 - macOS
@@ -42,6 +42,10 @@ Its use is recommended for those developments which are stand-alone (not Laravel
 - macOS
 
 #### With Laravel Mix versions
+
+##### v1.5.0
+
+1.5.1 &le; Laravel Mix version &lt; 1.6.0
 
 ##### v1.4.0 – v1.4.5
 
@@ -114,6 +118,12 @@ npm run watch
 Go for it! Start the development…
 
 ## Release notes
+
+##### v1.5.0
+
+Modifies the Laravel Mix version dependency and rewrites the output configuration management in accordance with the new Laravel Mix options (`fileLoaderDirs`).
+
+Modifies the setup (`scripts-to-package.json`) according to the new recommendation.
 
 ##### v1.4.5
 
