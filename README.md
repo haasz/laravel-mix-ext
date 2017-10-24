@@ -201,9 +201,9 @@ Adds the setup file (`setup/index.js`) and the description of installation.
 
 ##### v0.8.9
 
-Adds the auto setting of contentBase and the auto opening in browser to the configuration options of webpack dev server in the example webpack.config.js file.
+Adds the auto setting of contentBase and the auto opening in browser to the configuration options of webpack dev server in the example `webpack.config.js` file.
 
-Adds the scripts-to-package.json file to the setup examples.
+Adds the `scripts-to-package.json` file to the setup examples.
 
 ##### v0.8.8
 
