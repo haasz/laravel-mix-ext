@@ -536,8 +536,8 @@ function getCompiledContent(file, fragments, tags, replacements) {
 /**
  * Compile the template file.
  *
- * @param  {string} file         The template file.
- * @param  {Object} replacements The replacements.
+ * @param {string} file         The template file.
+ * @param {Object} replacements The replacements.
  */
 function compileTemplate(file, replacements) {
 	file = File.find(path.resolve(file));
@@ -575,8 +575,8 @@ function processTemplates() {
 /**
  * Watch the file's changes.
  *
- * @param  {string}   file     The file.
- * @param  {Function} callback The callback function.
+ * @param {string}   file     The file.
+ * @param {Function} callback The callback function.
  */
 function watchFile(file, callback) {
 	file = File.find(file);
