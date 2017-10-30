@@ -63,7 +63,6 @@ let force = process.argv.includes('-f');
  * Copy the webpack.mix.js file into the project's root directory.
  *
  */
-
 fs.copySync(
 	sourceDirectory,
 	targetDirectory,

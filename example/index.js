@@ -63,9 +63,8 @@ let force = process.argv.includes('-f');
  * Copy the example into the project's root directory.
  *
  */
-
- fs.copySync(
- 	sourceDirectory,
- 	targetDirectory,
- 	{overwrite: force}
- );
+fs.copySync(
+	sourceDirectory,
+	targetDirectory,
+	{overwrite: force}
+);
