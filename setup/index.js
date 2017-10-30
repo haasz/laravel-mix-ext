@@ -90,6 +90,7 @@ let
 	 */
 	packageJsonFile = targetDirectory + 'package.json',
 
+
 	/**
 	 * The scripts.json file.
 	 *
