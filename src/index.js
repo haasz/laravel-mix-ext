@@ -600,32 +600,36 @@ function watchFile(file, callback) {
 
 
 /**
+ * Are template files watched?
+ *
+ * @type {Boolean}
+ */
+let areTemplateFilesWatched = false;
+
+
+/**
  * Set the template processing.
  *
  */
 mix.then(function () {
 	processTemplates();
-	switch (true) {
-		// Watch mode
-		case process.argv.includes('--watch'):
-			// Watch manifest file
-			watchFile(
-				Mix.manifest.path(),
-				processTemplates
-			);
-		// Watch or Hot mode (no break, falls through)
-		case process.argv.includes('--hot'):
+	if (!areTemplateFilesWatched) {
+		// Watch or Hot mode
+		if (
+			process.argv.includes('--watch')
+			||
+			process.argv.includes('--hot')
+		) {
 			// Watch template files
 			for (let template in Config.tpl) {
-				watchFile(
-					template,
-					processTemplates
-				);
+				if (Config.tpl.hasOwnProperty(template)) {
+					watchFile(
+						template,
+						processTemplates
+					);
+				}
 			}
-			break;
-		// Default
-		default:
-			break;
+		}
 	}
 });
 
