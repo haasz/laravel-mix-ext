@@ -614,6 +614,7 @@ let areTemplateFilesWatched = false;
 mix.then(function () {
 	processTemplates();
 	if (!areTemplateFilesWatched) {
+		areTemplateFilesWatched = true;
 		// Watch or Hot mode
 		if (
 			process.argv.includes('--watch')
