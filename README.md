@@ -123,6 +123,8 @@ Go for it! Start the development…
 
 Adds an image to the example.
 
+Modifies the `cross-env` package version dependency.
+
 ##### v1.5.2
 
 Fixes the template processing setting.
