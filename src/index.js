@@ -558,15 +558,19 @@ function compileTemplate(file, replacements) {
 /**
  * Process the template files.
  *
+ * @param {Object} templates The templates.
  */
-function processTemplates() {
+function processTemplates(templates) {
 	var replacements = Mix.manifest.get();
-	for (let template in Config.tpl) {
-		if (Config.tpl.hasOwnProperty(template)) {
+	for (let template in templates) {
+		if (templates.hasOwnProperty(template)) {
 			// Copy to target
-			fs.copySync(template, Config.tpl[template]);
+			fs.copySync(template, templates[template]);
 			// Compile
-			compileTemplate(Config.tpl[template], replacements);
+			compileTemplate(
+				templates[template],
+				replacements
+			);
 		}
 	}
 }
@@ -612,7 +616,7 @@ let areTemplateFilesWatched = false;
  *
  */
 mix.then(function () {
-	processTemplates();
+	processTemplates(Config.tpl);
 	if (!areTemplateFilesWatched) {
 		areTemplateFilesWatched = true;
 		// Watch or Hot mode
@@ -624,9 +628,13 @@ mix.then(function () {
 			// Watch template files
 			for (let template in Config.tpl) {
 				if (Config.tpl.hasOwnProperty(template)) {
+					let tpl = {};
+					tpl[template] = Config.tpl[template];
 					watchFile(
 						template,
-						processTemplates
+						function () {
+							processTemplates(tpl);
+						}
 					);
 				}
 			}
