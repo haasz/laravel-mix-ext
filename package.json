@@ -29,7 +29,7 @@
   },
   "homepage": "https://gitlab.com/haasz/laravel-mix-ext#README",
   "devDependencies": {
-    "eslint": "^4.0.0"
+    "eslint": "^4.10.0"
   },
   "dependencies": {
     "browser-sync": "^2.18.13",
