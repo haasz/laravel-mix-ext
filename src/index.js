@@ -14,6 +14,14 @@ let mix = require('laravel-mix');
 
 
 /**
+ * Logger
+ *
+ * @type {Object}
+ */
+let logger = require('./logger');
+
+
+/**
  * File system with extra methods
  *
  * @type {Object}
