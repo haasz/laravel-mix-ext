@@ -600,7 +600,7 @@ function watchFile(file, callback) {
 
 
 /**
- * Are template files watched?
+ * Determine whether the template files are watched or not.
  *
  * @type {Boolean}
  */
