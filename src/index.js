@@ -493,10 +493,11 @@ function getDirFromPublicPath(file) {
  * @param  {string} dirFromPublicPath The directory of the file that contains the template tag.
  * @param  {string} tag               The template tag.
  * @param  {Object} replacements      The replacements.
+ * @param  {Object} templateFileLog   The template file log.
  *
  * @return {string}                   The replaced (or original) template tag.
  */
-function replaceTplTag(dirFromPublicPath, tag, replacements) {
+function replaceTplTag(dirFromPublicPath, tag, replacements, templateFileLog) {
 	let tagPath = tag.replace(new RegExp(tplTagPathRegExpStr), '$1');
 	let tagPathFromPublicPath = path.posix.resolve(dirFromPublicPath, tagPath);
 	if (
@@ -504,7 +505,7 @@ function replaceTplTag(dirFromPublicPath, tag, replacements) {
 		&&
 		replacements.hasOwnProperty(tagPathFromPublicPath)
 	) {
-		return (
+		let result = (
 			path.posix.isAbsolute(tagPath)
 				? replacements[tagPathFromPublicPath]
 				: path.posix.relative(
@@ -512,7 +513,10 @@ function replaceTplTag(dirFromPublicPath, tag, replacements) {
 					replacements[tagPathFromPublicPath]
 				)
 		);
+		templateFileLog.addTemplateTagLog(tag, result);
+		return result;
 	}
+	templateFileLog.addTemplateTagLog(tag);
 	return tag;
 }
 
@@ -520,21 +524,27 @@ function replaceTplTag(dirFromPublicPath, tag, replacements) {
 /**
  * Get the compiled content of template file.
  *
- * @param  {Object}   file         The template file.
- * @param  {string[]} fragments    The content fragments.
- * @param  {string[]} tags         The template tags in original content.
- * @param  {Object}   replacements The replacements.
+ * @param  {Object}   file            The template file.
+ * @param  {string[]} fragments       The content fragments.
+ * @param  {string[]} tags            The template tags in original content.
+ * @param  {Object}   replacements    The replacements.
+ * @param  {Object}   templateFileLog The template file log.
  *
  * @return {string}                The compiled content.
  */
-function getCompiledContent(file, fragments, tags, replacements) {
+function getCompiledContent(file, fragments, tags, replacements, templateFileLog) {
 	let content = '';
 	let fragmentStep = numberOfTplTagRegExpParts + 1;
 	let dirFromPublicPath = getDirFromPublicPath(file);
 	let i = 0;
 	for (; i < tags.length; ++i) {
 		content += fragments[i * fragmentStep];
-		content += replaceTplTag(dirFromPublicPath, tags[i], replacements);
+		content += replaceTplTag(
+			dirFromPublicPath,
+			tags[i],
+			replacements,
+			templateFileLog
+		);
 	}
 	content += fragments[i * fragmentStep];
 	return content;
@@ -544,10 +554,11 @@ function getCompiledContent(file, fragments, tags, replacements) {
 /**
  * Compile the template file.
  *
- * @param {string} file         The template file.
- * @param {Object} replacements The replacements.
+ * @param {string} file            The template file.
+ * @param {Object} replacements    The replacements.
+ * @param {Object} templateFileLog The template file log.
  */
-function compileTemplate(file, replacements) {
+function compileTemplate(file, replacements, templateFileLog) {
 	file = File.find(path.resolve(file));
 	let content = file.read();
 	let tags = content.match(new RegExp(tplTagRegExpStr, 'g'));
@@ -556,7 +567,8 @@ function compileTemplate(file, replacements) {
 			file,
 			content.split(new RegExp(tplTagRegExpStr)),
 			tags,
-			replacements
+			replacements,
+			templateFileLog
 		);
 		file.write(content);
 	}
@@ -569,6 +581,7 @@ function compileTemplate(file, replacements) {
  * @param {Object} templates The templates.
  */
 function processTemplates(templates) {
+	var templateProcessingLog = logger.createTemplateProcessingLog();
 	var replacements = Mix.manifest.get();
 	for (let template in templates) {
 		if (templates.hasOwnProperty(template)) {
@@ -577,10 +590,15 @@ function processTemplates(templates) {
 			// Compile
 			compileTemplate(
 				templates[template],
-				replacements
+				replacements,
+				templateProcessingLog.addTemplateFileLog(
+					template,
+					templates[template]
+				)
 			);
 		}
 	}
+	templateProcessingLog.print();
 }
 
 
