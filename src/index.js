@@ -22,6 +22,22 @@ let logger = require('./logger');
 
 
 /**
+ * Node notifier
+ *
+ * @type {Object}
+ */
+let notifier = require('node-notifier');
+
+
+/**
+ * OS
+ *
+ * @type {Object}
+ */
+let os = require('os');
+
+
+/**
  * File system with extra methods
  *
  * @type {Object}
@@ -630,6 +646,24 @@ function watchFile(file, callback) {
 
 
 /**
+ * Send a cross platform native notification.
+ *
+ * @param {string} message The message.
+ */
+function notify(message) {
+	if (Mix.isUsing('notifications')) {
+		let contentImage = path.join(__dirname, '../img/sunshine.png');
+		notifier.notify({
+			title: 'The Extension of Laravel Mix',
+			message: message,
+			contentImage: contentImage,
+			icon: (os.platform() === 'win32' || os.platform() === 'linux') ? contentImage : undefined
+		});
+	}
+}
+
+
+/**
  * Determine whether the template files are watched or not.
  *
  * @type {Boolean}
@@ -660,6 +694,7 @@ mix.then(function () {
 						template,
 						function () {
 							processTemplates(tpl);
+							notify('The template processing is done.');
 						}
 					);
 				}
