@@ -30,7 +30,7 @@ Its use is recommended for those developments which are stand-alone (not Laravel
 
 #### With operating systems
 
-##### v1.4.4 – v1.5.5
+##### v1.4.4 – v1.5.6
 
 - Linux
 - macOS
@@ -43,7 +43,7 @@ Its use is recommended for those developments which are stand-alone (not Laravel
 
 #### With Laravel Mix versions
 
-##### v1.5.0 – v1.5.5
+##### v1.5.0 – v1.5.6
 
 1.5.1 &le; Laravel Mix version &lt; 1.6.0
 
@@ -118,6 +118,12 @@ npm run watch
 Go for it! Start the development…
 
 ## Release notes
+
+##### v1.5.6
+
+Adds the logging of the template processing and a native notification that the template processing is done.
+
+Updates the development dependency.
 
 ##### v1.5.5
 
