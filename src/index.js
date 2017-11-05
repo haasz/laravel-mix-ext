@@ -625,12 +625,12 @@ function processTemplates(templates) {
  * @param {Function} callback The callback function.
  */
 function watchFile(file, callback) {
-	file = File.find(file);
-	chokidar
+	let absolutePath = File.find(file).path();
+	let watcher = chokidar
 		.watch(
-			file.path(),
+			absolutePath,
 			{
-				persistent: true
+				persistent: false
 			}
 		)
 		.on(
@@ -639,6 +639,8 @@ function watchFile(file, callback) {
 				if (typeof callback === 'function') {
 					callback(file);
 				}
+				watcher.unwatch(absolutePath);
+				watchFile(file, callback);
 			}
 		)
 	;
