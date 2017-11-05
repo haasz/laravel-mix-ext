@@ -106,6 +106,9 @@ TemplateProcessingLog.prototype.toString = function toString() {
 	page.push([
 		colors.bold('Template processing'.toUpperCase())
 	]);
+	page.push([
+		new Date().toLocaleString()
+	]);
 	if (this.templateFileLogs.length) {
 		for (var i = 0; i < this.templateFileLogs.length; ++i) {
 			page.push(['']);
