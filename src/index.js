@@ -630,7 +630,7 @@ function watchFile(file, callback) {
 		.watch(
 			absolutePath,
 			{
-				persistent: false
+				persistent: true
 			}
 		)
 		.on(
