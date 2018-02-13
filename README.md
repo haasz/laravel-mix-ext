@@ -30,7 +30,7 @@ Its use is recommended for those developments which are stand-alone (not Laravel
 
 #### With operating systems
 
-##### v1.4.4 – v1.6.0
+##### v1.4.4 – v1.6.4
 
 - Linux
 - macOS
@@ -43,7 +43,7 @@ Its use is recommended for those developments which are stand-alone (not Laravel
 
 #### With Laravel Mix versions
 
-##### v1.5.0 – v1.6.0
+##### v1.5.0 – v1.6.4
 
 1.5.1 &le; Laravel Mix version &lt; 1.7.0
 
@@ -118,6 +118,10 @@ npm run watch
 Go for it! Start the development…
 
 ## Release notes
+
+##### v1.6.4
+
+Adds package dependencies and informations.
 
 ##### v1.6.0
 
