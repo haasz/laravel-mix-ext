@@ -32,6 +32,8 @@ let notifier = require('node-notifier');
 /**
  * OS
  *
+ * This module is included in the Node.js.
+ *
  * @type {Object}
  */
 let os = require('os');
@@ -39,6 +41,8 @@ let os = require('os');
 
 /**
  * File system with extra methods
+ *
+ * This module is the dependency of the Laravel Mix.
  *
  * @type {Object}
  */
@@ -48,6 +52,8 @@ let fs = require('fs-extra');
 /**
  * Path
  *
+ * This module is included in the Node.js.
+ *
  * @type {Object}
  */
 let path = require('path');
@@ -55,6 +61,8 @@ let path = require('path');
 
 /**
  * Chokidar
+ *
+ * This module is the dependency of the Laravel Mix.
  *
  * @type {Object}
  */
