@@ -45,7 +45,7 @@ Its use is recommended for those developments which are stand-alone (not Laravel
 
 ##### v1.5.0 – v1.6.4
 
-1.5.1 &le; Laravel Mix version &lt; 1.7.0
+1.5.1 &le; Laravel Mix version &lt; 1.8.0
 
 ##### v1.4.0 – v1.4.5
 

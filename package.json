@@ -38,7 +38,7 @@
     "colors": "^1.1.2",
     "cross-env": "^5.1.1",
     "escape-string-regexp": "^1.0.5",
-    "laravel-mix": ">=1.5.1 <1.7.0",
+    "laravel-mix": ">=1.5.1 <1.8.0",
     "node-notifier": "^4.6.1"
   }
 }
