@@ -1,18 +1,24 @@
+<div>
 <h1 align="center">
 	<a href="https://gitlab.com/haasz/laravel-mix-ext">The Extension of Laravel Mix</a>
 </h1>
 
-The [Laravel Mix](https://github.com/JeffreyWay/laravel-mix) provides a clean, fluent API for defining basic webpack build steps for your web application.
-The Laravel Mix supports several common CSS and JavaScript preprocessors.
+<p>
+	The <a href="https://github.com/JeffreyWay/laravel-mix">Laravel Mix</a> provides a clean, fluent API for defining basic webpack build steps for your web application.
+	The Laravel Mix supports several common CSS and JavaScript preprocessors.
+</p>
 
-**The Extensions of Laravel Mix** adds and modifies methods and presets to Laravel Mix.
-Its use is recommended for those developments which are stand-alone (not Laravel) projects.
+<p>
+	<b><a href="https://gitlab.com/haasz/laravel-mix-ext">The Extension of Laravel Mix</a></b> adds and modifies methods and presets to Laravel Mix.
+	Its use is recommended for those developments which are stand-alone (not Laravel) projects.
+</p>
 
 <p align="center">
 	<a href="https://www.npmjs.com/package/laravel-mix-ext"><img src="https://img.shields.io/npm/v/laravel-mix-ext.svg" alt="npm version"></a>
 	<a href="https://www.npmjs.com/package/laravel-mix-ext"><img src="https://img.shields.io/npm/l/laravel-mix-ext.svg" alt="npm license"></a>
 	<a href="https://www.npmjs.com/package/laravel-mix-ext"><img src="https://img.shields.io/npm/dt/laravel-mix-ext.svg" alt="npm downloads"></a>
 </p>
+</div>
 
 ## Table of contents
 
