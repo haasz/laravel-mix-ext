@@ -36,7 +36,7 @@
 
 #### With operating systems
 
-##### v1.4.4 – v1.7.0
+##### v1.4.4 – v1.7.2
 
 - Linux
 - macOS
@@ -49,7 +49,7 @@
 
 #### With Laravel Mix versions
 
-##### v1.5.0 – v1.7.0
+##### v1.5.0 – v1.7.2
 
 1.5.1 &le; Laravel Mix version &lt; 1.8.0
 
@@ -124,6 +124,10 @@ npm run watch
 Go for it! Start the development…
 
 ## Release notes
+
+##### v1.7.2
+
+Modifies the readme, no other change.
 
 ##### v1.7.0
 
